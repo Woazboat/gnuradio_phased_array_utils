@@ -1,0 +1,49 @@
+id: phased_array_2d_calcPhase
+label: Array Phase Offsets
+category: '[phased_array_2d]'
+
+templates:
+  imports: from gnuradio import phased_array_2d
+  make: phased_array_2d.calcPhase(num_antennas=${num_antennas}, antennas=${p_antennas}, f = ${f}, azimuth = ${azimuth}, elevation = ${elevation})
+  callbacks:
+  - set_parameters(${p_antennas}, ${f}, ${azimuth}, ${elevation})
+
+parameters:
+- id: num_antennas
+  label: Number of Antennas
+  dtype: int
+  default: 9
+- id: p_antennas
+  label: Antenna Positions
+  dtype: string
+  default: "[(0.0, 0.0), (0.299792458, 0.0), (0.599584916, 0.0), (0.0, 0.299792458), (0.299792458, 0.299792458), (0.599584916, 0.299792458), (0.0, 0.599584916), (0.299792458, 0.599584916), (0.599584916, 0.599584916)]"
+- id: f
+  label: Frequency (Hz)
+  dtype: float
+  default: 500000000
+- id: azimuth
+  label: Azimuth (deg)
+  dtype: float
+  default: 54
+- id: elevation
+  label: Elevation (deg)
+  dtype: float
+  default: 45
+
+inputs:
+
+outputs:
+- label: phase
+  domain: stream
+  dtype: float
+  multiplicity: ${num_antennas}
+
+asserts:
+- ${ num_antennas > 0 }
+- ${ elevation >= 0 }
+- ${ elevation <= 90 }
+- ${ azimuth >= 0 }
+- ${ elevation <= 360 }
+- ${ f > 0 }
+
+file_format: 1

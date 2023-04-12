@@ -1,0 +1,6 @@
+/*!
+ * \defgroup block GNU Radio PHASED_ARRAY_2D C++ Signal Processing Blocks
+ * \brief All C++ blocks that can be used from the PHASED_ARRAY_2D GNU Radio
+ *        module are listed here or in the subcategories below.
+ *
+ */
